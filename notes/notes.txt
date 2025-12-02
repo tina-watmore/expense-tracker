@@ -1,0 +1,85 @@
+Core purpose: 
+
+- Set monthly budget limits for different categories 
+- Track daily expenses and show remaining monthly budget for categories 
+- Roll over any remainder (plus or negative)
+
+
+- Add / edit / delete expenses
+- view totals / graphs
+- use database 
+
+Cards: 
+ - Networth section
+	- assets
+	- properties 
+	- debt
+	- savings
+	- superannuation
+	- investments
+ - section for properties 	
+	- rent
+	- expenses
+	- holding cost
+		
+
+
+Structure: 
+expense-tracker/
+├─ app/
+│  ├─ layout.tsx       # layout (shared header, global styles)
+│  ├─ page.tsx         # dashboard
+│  ├─ add/             
+│  ├─ edit | view             
+│  └─ api/             # serverless routes if needed
+├─ components/
+│  ├─ ExpenseForm.tsx
+│  ├─ ExpenseList.tsx235
+│  ├─ SummaryCard.tsx
+├─ context/
+│  └─ ExpenseContext.tsx
+├─ lib/
+│  └─ utils.ts
+├─ styles/
+│  └─ globals.scss 
+
+
+Layout
+	- Header
+	- Navigation
+	- main content
+
+Dashboard: 
+	- All transactions history section
+	- Networth card
+	- Monthly remaining budget per category 
+ 
+
+ DATABASE Structure: 
+ Groups
+- Id
+- Name
+
+Categories
+- Id
+- Name
+- GroupdId
+- Budget
+
+SubCategories
+- Id
+- Name
+- CategoryId
+
+Purchaser
+- Id
+- Name
+
+Expenses
+- Id
+- CategoryId
+- SubCategoryId
+- Amount
+- Notes
+- PurchaserId
+- Date
