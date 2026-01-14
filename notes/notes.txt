@@ -53,33 +53,15 @@ Dashboard:
 	- All transactions history section
 	- Networth card
 	- Monthly remaining budget per category 
+	- Annual over budgets per category
  
 
- DATABASE Structure: 
- Groups
-- Id
-- Name
+https://elements.envato.com/expense-budget-tracker-app-dashboard-TSBDJNY
 
-Categories
-- Id
-- Name
-- GroupdId
-- Budget
 
-SubCategories
-- Id
-- Name
-- CategoryId
 
-Purchaser
-- Id
-- Name
-
-Expenses
-- Id
-- CategoryId
-- SubCategoryId
-- Amount
-- Notes
-- PurchaserId
-- Date
+Additions to add later:
+- Adding ability to add new CSP budgets
+	- Comparing current budget with older budgets on the CSP budget table with dropdown to go through old budgets
+	- Making sure expenses are put against the right budget, using some sort of time frame
+	- Making sure the remaining budget widgets (monthly and yearly) are using the correct budgets for correct time periods

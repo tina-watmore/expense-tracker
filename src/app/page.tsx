@@ -8,7 +8,7 @@ export const Metadata = {
 export default function Dashboard() {
   return (
     <div className="page-wrapper">
-      <Header title="Dashboard" />
+      <Header title="Dashboard" subtitle="" />
     </div>
   );
 }

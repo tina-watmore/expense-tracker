@@ -8,7 +8,7 @@ export const Metadata = {
 export default function Settings() {
   return (
     <div className="page-wrapper">
-      <Header title="Settings" />
+      <Header title="Settings" subtitle="" />
     </div>
   );
 }

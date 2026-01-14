@@ -1,0 +1,118 @@
+{
+  "groups": [
+    {
+      "id": 1,
+      "name": "Fixed Costs",
+      "categories": [
+        {
+          "id": 1,
+          "name": "Groceries",
+          "amount": 1400,
+          "subCategories": [
+            { "id": 1, "name": "Food / Toiletries / Health Foods" },
+            { "id": 2, "name": "Bottle Shop" },
+            { "id": 3, "name": "Qantas Wine" }
+          ]
+        },
+        { "id": 2, "name": "Takeaway", "amount": 300 },
+        { "id": 3, "name": "Going Out", "amount": 1000 },
+        { "id": 4, "name": "Personal Care", "amount": 220 },
+        {
+          "id": 5,
+          "name": "Accommodation Cost",
+          "amount": 2308.71,
+          "subCategories": [
+            { "id": 1, "name": "Mortgage" },
+            { "id": 2, "name": "Gas / Electricity" },
+            { "id": 3, "name": " Insurance, council, strata, water" }
+          ]
+        },
+        { "id": 6, "name": "Internet / Phone", "amount": 68 },
+        {
+          "id": 7,
+          "name": "Health",
+          "amount": 520,
+          "subCategories": [
+            { "id": 1, "name": "Health Insurance" },
+            { "id": 2, "name": "Medicine / Doctors / Specialist" },
+            { "id": 3, "name": "Gym Membership" }
+          ]
+        },
+        { "id": 8, "name": "Subscriptions", "amount": 35 },
+        {
+          "id": 9,
+          "name": "Transport",
+          "amount": 350,
+          "subCategories": [
+            { "id": 1, "name": "MC holding costs (insurance, rego, NRMA etc)" },
+            { "id": 2, "name": "Opal" },
+            { "id": 3, "name": "Uber / Petrol / GoGet / Car Rental / Other" }
+          ]
+        },
+        { "id": 10, "name": "Gifts", "amount": 100 },        
+        { "id": 11, "name": "Miscellaneous", "amount": 350 }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Guilt Free Spend",
+      "categories": [
+        { "id": 1, "name": "Holiday", "amount": 1500 },
+        { "id": 2, "name": "Tina's GFS", "amount": 300 },
+        { "id": 3, "name": "Jason's GFS", "amount": 300 }        
+      ]
+    },      
+    {
+      "id": 3,
+      "name": "Investments",
+      "categories": [
+        { "id": 1, "name": "Long Term Emergency Savings", "amount": 1000},
+        { "id": 2, "name": "Wallie Savings", "amount": 50 },
+        { "id": 3, "name": "ETF's", "amount": 500 },
+        { "id": 4, "name": "Tina's Superannuation", "amount": 232.14 },
+        { "id": 5, "name": "Jason's Superannuation", "amount": 1750 }        
+      ]
+    },         
+    {
+      "id": 4,
+      "name": "Business",
+      "categories": [
+        { "id": 1, "name": "Phone / Internet" },
+        { "id": 2, "name": "Servers" },
+        { "id": 3, "name": "Insurance / Workers Comp / Business Rego" },
+        { "id": 4, "name": "Accountant" },
+        { "id": 5, "name": "Superannuation" },
+        { "id": 6, "name": "Other" }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Properties",
+      "categories": [
+        { "id": 1, "name": "Kooralbyn" },
+        { "id": 2, "name": "NS & Airbnb" },
+        { "id": 3, "name": "The Nook" },
+        { "id": 4, "name": "Wellington Point" }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Networth",
+      "categories": [
+        { "id": 1, "name": "Assets", "amount": 2907000},
+        { "id": 2, "name": "Investments", "amount": 32091 },
+        { "id": 3, "name": "Superannuation", "amount": 505000 },
+        { "id": 4, "name": "Savings", "amount": 24000 },
+        { "id": 5, "name": "Debt", "amount": -425000 }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Income",
+      "categories": [
+        { "id": 1, "name": "Jason", "amount": 12199.33},
+        { "id": 2, "name": "Tina", "amount": 232.14 }
+      ]
+    }        
+  ]
+}

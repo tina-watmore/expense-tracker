@@ -1,21 +1,6 @@
-const expenses = {
-  groups: [
-    {
-      name: 'Personal',
-      categories: [
-        {
-          name: 'Groceries',
-          budget: 1400.0,
-          expenses: [{}],
-          sub_categories: [
-            {
-              name: 'Food',
-              expenses: [{ date: '21-Oct-25', amount: 193.09 }],
-            },
-          ],
-        },
-      ],
-    },
-    { name: 'business' },
-  ],
-};
+
+import data from '@/data/expenses.json';
+
+export async function GET() {
+  return Response.json({ data })
+}

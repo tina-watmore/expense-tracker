@@ -32,13 +32,7 @@ export default function StaticSiteNavigation() {
               <LayoutDashboard strokeWidth={1} className="nav-icon" />
               Dashboard
             </ActiveLink>
-          </li>
-          <li>
-            <ActiveLink className="nav-item" href="/add">
-              <CirclePlus strokeWidth={1} className="nav-icon" />
-              Add Expense
-            </ActiveLink>
-          </li>          
+          </li>       
           <li>
             <ActiveLink className="nav-item" href="/transactions">
               <BanknoteArrowDown strokeWidth={1} className="nav-icon" />

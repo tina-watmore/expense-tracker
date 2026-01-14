@@ -2,12 +2,16 @@ import Image from 'next/image';
 
 type HeaderProps = {
   title: string;
+  subtitle: string;
 };
 
-export default function Header({title} : HeaderProps) {
+export default function Header({title, subtitle} : HeaderProps) {
   return (
     <header>
-      <div className="page-title"><h1>{title}</h1></div>
+      <div className="page-title"> 
+        <h1 className="title">{title}</h1>
+        <p className="subtitle">{subtitle}</p>
+      </div>
       <div className="user-info-wrapper">
         <div className="user-details">
             <h3 className="user-name">Tina Watmore</h3>
