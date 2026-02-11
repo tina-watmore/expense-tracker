@@ -2,13 +2,12 @@ import Header from "@/components/Header";
 import type { GroupsData, Category } from "@/types/groups";
 import { formatCurrency, getPercentage } from "@/utils/helperFunctions";
 
-
 export const Metadata = {
-  title: 'CSP amount',
+  title: 'CSP Budget',
   description: 'Networth and monthly amount',
 };
 
-export default async function amount() {
+export default async function Budget() {
 
   const response = await fetch('http://localhost:3000/api/groups');
   const fetchedData: { data: GroupsData} = await response.json();
@@ -33,6 +32,9 @@ export default async function amount() {
   const investmentsSavingsGroupData: Category[] = fetchedData.data.groups.find((g) => g.id === 3)?.categories ?? [];
   const investmentsSavingsCostTotal = investmentsSavingsGroupData.reduce((total, category) => total + (category.amount ?? 0), 0);  
 
+  // budgetRemainder: income - expenses total
+  const budgetRemainder = incomeTotal - (fixedCostTotal + guiltFreeSpendCostTotal + investmentsSavingsCostTotal);
+
   return (
     <div className="page-wrapper">
       <Header title="CSP amount" subtitle="Networth and monthly amount" />
@@ -41,7 +43,7 @@ export default async function amount() {
         <div className="card-wrapper">
           {
             fetchedData ? (
-              <div className="csp-amount-table table-content">            
+              <div className="csp-budget-table table-content">            
                 {                
                   /* networth */      
                   networthGroupData ? (
@@ -58,7 +60,7 @@ export default async function amount() {
                           </div> 
                         ))
                       }
-                      <div className="footer-row">
+                      <div className="ft-row">
                         <div className="t-col">Total:</div>
                         <div className="s-col">{formatCurrency(networthTotal)}</div>        
                       </div>                          
@@ -84,7 +86,7 @@ export default async function amount() {
                           </div> 
                         ))
                       }
-                      <div className="footer-row">
+                      <div className="ft-row">
                         <div className="t-col">Total:</div>
                         <div className="s-col">{formatCurrency(incomeTotal)}</div>        
                       </div>                          
@@ -110,7 +112,7 @@ export default async function amount() {
                           </div> 
                         ))
                       }
-                      <div className="footer-row">
+                      <div className="ft-row">
                         <div className="t-col">Total:</div>
                         <div className="s-col">{formatCurrency(fixedCostTotal)}</div>        
                       </div>                          
@@ -136,7 +138,7 @@ export default async function amount() {
                           </div> 
                         ))
                       }
-                      <div className="footer-row">
+                      <div className="ft-row">
                         <div className="t-col">Total:</div>
                         <div className="s-col">{formatCurrency(guiltFreeSpendCostTotal)}</div>        
                       </div>                          
@@ -162,7 +164,7 @@ export default async function amount() {
                           </div> 
                         ))
                       }
-                      <div className="footer-row">
+                      <div className="ft-row">
                         <div className="t-col">Total:</div>
                         <div className="s-col">{formatCurrency(investmentsSavingsCostTotal)}</div>        
                       </div>                          
@@ -170,7 +172,14 @@ export default async function amount() {
                   ) : (
                     <p>No Investments & Savings</p>
                   )                    
-                }                                                                                                                                                                                                                                
+                }          
+
+                {
+                  <div className="table-footer-row">
+                    <div className="t-col">Budget Remainder (income - expenses/savings):</div>
+                    <div className="s-col">{formatCurrency(budgetRemainder)}</div>        
+                  </div>  
+                }                                                                                                                                                                                                                      
               </div>          
             ) : (
               <p>no amount</p>

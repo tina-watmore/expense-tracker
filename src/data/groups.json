@@ -64,7 +64,7 @@
     },      
     {
       "id": 3,
-      "name": "Investments",
+      "name": "Investing & Saving",
       "categories": [
         { "id": 1, "name": "Long Term Emergency Savings", "amount": 1000},
         { "id": 2, "name": "Wallie Savings", "amount": 50 },
@@ -111,7 +111,8 @@
       "name": "Income",
       "categories": [
         { "id": 1, "name": "Jason", "amount": 12199.33},
-        { "id": 2, "name": "Tina", "amount": 232.14 }
+        { "id": 2, "name": "Tina", "amount": 232.14 },
+        { "id": 3, "name": "Other", "amount": 0 }
       ]
     }        
   ]
