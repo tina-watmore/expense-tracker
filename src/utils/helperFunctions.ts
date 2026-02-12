@@ -78,3 +78,16 @@ export function isInCurrentMonth(date: string) {
 export function toISODate(date: Date) {
     return date.toISOString().split("T")[0]  
 }
+
+export const namesOfMonths = [
+  "January", "February", "March", "April",
+  "May", "June", "July", "August",
+  "September", "October", "November", "December"
+]
+
+export function getCurrentMonth() {
+  const now = new Date()
+  const month = now.getMonth() 
+    
+  return month
+}

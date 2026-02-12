@@ -2,12 +2,13 @@
 
 import { useTransactions } from "@/context/TransactionsContext";
 import type { Group, Category } from "@/types/groups";
-import { isDateBetween, getFinancialYearRange, toISODate, formatCurrency, isInCurrentMonth } from "@/utils/helperFunctions";
+import { isDateBetween, getFinancialYearRange, toISODate, formatCurrency, isInCurrentMonth, namesOfMonths, getCurrentMonth } from "@/utils/helperFunctions";
 import { useState, useMemo } from "react";
 
 export const Dashboard = () => {
+    const currentMonth = getCurrentMonth();
     const [selectedYear, setSelectedYear] = useState();
-    const [selectedMonth, setSelectedMonth] = useState();  
+    const [selectedMonth, setSelectedMonth] = useState(namesOfMonths[currentMonth]);  
     const { transactions, groups } = useTransactions();       
     const { startDate, endDate } = getFinancialYearRange();
    
@@ -49,6 +50,8 @@ export const Dashboard = () => {
         .reduce((total, t) => total + t.amount, 0)
     }, [transactions]);       
     
+    
+
     return (
       <>
         <div className="bg-cards-wrapper">
@@ -110,7 +113,12 @@ export const Dashboard = () => {
                   value={selectedMonth}
                   onChange={e => setSelectedMonth(e.target.value as any)}
                 >
-                  <option value="" disabled>Select Month:</option>
+                  {
+                    namesOfMonths.map(m => (
+                      <option value={m}>{m}</option>
+                    ))
+                  }
+                  
 
                 </select>
               </div>
