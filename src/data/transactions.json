@@ -383,6 +383,15 @@
       "purchasedBy": "Combined",
       "groupId": 2,
       "categoryId": 1
+    },
+    {
+      "id": 41,
+      "createdDate": "2026-02-12T03:55:27.001Z",
+      "date": "2024-03-15",
+      "amount": 100,
+      "purchasedBy": "Combined",
+      "groupId": 1,
+      "categoryId": 1
     }
   ]
 }

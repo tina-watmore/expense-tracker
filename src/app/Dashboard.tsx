@@ -2,15 +2,24 @@
 
 import { useTransactions } from "@/context/TransactionsContext";
 import type { Group, Category } from "@/types/groups";
-import { isDateBetween, getFinancialYearRange, toISODate, formatCurrency, isInCurrentMonth, namesOfMonths, getCurrentMonth } from "@/utils/helperFunctions";
-import { useState, useMemo } from "react";
+import { 
+  isDateBetween, 
+  getFinancialYearRange, 
+  toISODate, formatCurrency, 
+  isInSelectedDateRange, 
+  isInCurrentMonth, 
+  namesOfMonths, 
+  getCurrentDate, 
+  generateYearsDescending } from "@/utils/helperFunctions";
+import { useState, useEffect, useMemo } from "react";
 
 export const Dashboard = () => {
-    const currentMonth = getCurrentMonth();
-    const [selectedYear, setSelectedYear] = useState();
-    const [selectedMonth, setSelectedMonth] = useState(namesOfMonths[currentMonth]);  
     const { transactions, groups } = useTransactions();       
-    const { startDate, endDate } = getFinancialYearRange();
+    const { startDate, endDate } = getFinancialYearRange();  
+    const { currentYear, currentMonth } = getCurrentDate();
+    const [selectedYear, setSelectedYear] = useState(currentYear);
+    const [selectedMonth, setSelectedMonth] = useState(currentMonth);  
+    const years = generateYearsDescending(2024);
    
     const monthlyExpenseTotal = useMemo(() => {
       return transactions.filter(t => isInCurrentMonth(
@@ -50,8 +59,6 @@ export const Dashboard = () => {
         .reduce((total, t) => total + t.amount, 0)
     }, [transactions]);       
     
-    
-
     return (
       <>
         <div className="bg-cards-wrapper">
@@ -114,13 +121,27 @@ export const Dashboard = () => {
                   onChange={e => setSelectedMonth(e.target.value as any)}
                 >
                   {
-                    namesOfMonths.map(m => (
-                      <option value={m}>{m}</option>
+                    namesOfMonths.map((m, index) => (
+                      <option key={index} value={index}>{m}</option>
                     ))
                   }
                   
 
                 </select>
+                <select
+                  className="sort-by-filter"
+                  id="sort-by-year"
+                  value={selectedYear}
+                  onChange={e => setSelectedYear(e.target.value as any)}
+                >
+                  {
+                    years.map((y, index) => (
+                      <option key={index} value={y}>{y}</option>
+                    ))
+                  }
+                  
+
+                </select>                
               </div>
             </div>
             <div className="content">
@@ -130,7 +151,7 @@ export const Dashboard = () => {
                     .map(g => (g.categories.map((c) => {
                       const categorySpend = transactions
                         .filter(t => t.groupId === g.id && t.categoryId === c.id)
-                        .filter(t => isInCurrentMonth(t.date))
+                        .filter(t => isInSelectedDateRange(t.date, selectedMonth, selectedYear))
                         .reduce((total, item) => total + item.amount, 0);
                       const remainingAmount = (c.amount ?? 0) - categorySpend;
                       const percentageUsed = (categorySpend / (c.amount ?? 0)) * 100;

@@ -34,20 +34,20 @@ export function isDateBetween(
 
 export function getCurrentDate() {
   const now = new Date()
-  const year = now.getFullYear()
-  const month = now.getMonth() // 0 = Jan, 6 = July
+  const currentYear = now.getFullYear()
+  const currentMonth = now.getMonth() // 0 = Jan, 6 = July
   
   return {
-    year,
-    month
+    currentYear,
+    currentMonth
   }
 }
 
 export function getFinancialYearRange(selectedYear?: number) {
   // current financial year - default
-  const { year, month } = getCurrentDate();
+  const { currentYear, currentMonth } = getCurrentDate();
 
-  const startYear = month >= 6 ? year : year - 1
+  const startYear = currentMonth >= 6 ? currentYear : currentYear - 1
 
   let startDate = new Date(startYear, 6, 1)   // July 1
   let endDate = new Date(startYear + 1, 5, 30) // June 30        
@@ -74,9 +74,29 @@ export function isInCurrentMonth(date: string) {
   )
 }
 
+export function isInSelectedDateRange(date: string, selectedMonth: number, selectedYear: number) {
+  const selectedDate = new Date(selectedYear, selectedMonth)
+  const d = new Date(date);
+
+  return (
+    d.getMonth() === selectedDate.getMonth() &&
+    d.getFullYear() === selectedDate.getFullYear()
+  )
+}
 
 export function toISODate(date: Date) {
     return date.toISOString().split("T")[0]  
+}
+
+ export const generateYearsDescending = (startYear: number) => {
+  const currentYear = new Date().getFullYear()
+  const years = []
+
+  for (let year = currentYear; year >= startYear; year--) {
+    years.push(year)
+  }
+
+  return years
 }
 
 export const namesOfMonths = [
@@ -85,9 +105,3 @@ export const namesOfMonths = [
   "September", "October", "November", "December"
 ]
 
-export function getCurrentMonth() {
-  const now = new Date()
-  const month = now.getMonth() 
-    
-  return month
-}
