@@ -416,11 +416,27 @@ header {
       }
       .header {
         padding-bottom: 15px;
+        position: relative;
+        padding-right: 100px;
         .title {
           font-weight: 700;
         }
         .sub-title {
           font-size: .85rem;
+        }
+        .filter {
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 158px;
+          text-align: right;
+        }
+        select {
+          border: none;
+          background: none;
+          outline: none;
+          font-size: .9rem;
+          font-weight: 700;
         }
       }
 

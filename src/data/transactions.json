@@ -392,6 +392,15 @@
       "purchasedBy": "Combined",
       "groupId": 1,
       "categoryId": 1
+    },
+    {
+      "id": 42,
+      "createdDate": "2026-02-16T06:18:28.421Z",
+      "date": "2025-01-16",
+      "amount": 1235,
+      "purchasedBy": "Combined",
+      "groupId": 1,
+      "categoryId": 2
     }
   ]
 }

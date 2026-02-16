@@ -14,12 +14,15 @@ import {
 import { useState, useEffect, useMemo } from "react";
 
 export const Dashboard = () => {
-    const { transactions, groups } = useTransactions();       
-    const { startDate, endDate } = getFinancialYearRange();  
+    const years = generateYearsDescending(2023);
+    const { transactions, groups } = useTransactions();               
     const { currentYear, currentMonth } = getCurrentDate();
+    const { startDate, endDate } = getFinancialYearRange();  
+    const [selectedFinancialYear, setSelectedFinancialYear] = useState();
     const [selectedYear, setSelectedYear] = useState(currentYear);
     const [selectedMonth, setSelectedMonth] = useState(currentMonth);  
-    const years = generateYearsDescending(2024);
+    const [selectedFinYearStart, setSelectedFinYearStart] = useState<Date>(startDate);
+    const [selectedFinYearEnd, setSelectedFinYearEnd] = useState<Date>(endDate);    
    
     const monthlyExpenseTotal = useMemo(() => {
       return transactions.filter(t => isInCurrentMonth(
@@ -57,10 +60,19 @@ export const Dashboard = () => {
         )
         .filter(t => t.groupId === 1 || t.groupId === 2)
         .reduce((total, t) => total + t.amount, 0)
-    }, [transactions]);       
+    }, [transactions]);        
     
+    useEffect(() => {
+      const { startDate, endDate } = getFinancialYearRange(selectedFinancialYear);
+      setSelectedFinYearStart(startDate);
+      setSelectedFinYearEnd(endDate);
+    }, [selectedFinancialYear]);
+
     return (
       <>
+
+        {/* card summaries */}
+
         <div className="bg-cards-wrapper">
           <div className="bg-card">
             <div className="title">
@@ -108,15 +120,18 @@ export const Dashboard = () => {
             </div>                      
           </div> 
         </div>    
+
         <div className="progress-overview-wrapper">
+
+          {/* monthly overview */}
+
           <div className="progress-overview half-width">
             <div className="header">
               <div className="title">Monthly Overview</div>
               <span className="sub-title">Budget remaining by category</span>
-              <div className="filter">                
+              <div className="filter">              
                 <select
                   className="sort-by-filter"
-                  id="sort-by-month"
                   value={selectedMonth}
                   onChange={e => setSelectedMonth(e.target.value as any)}
                 >
@@ -193,32 +208,49 @@ export const Dashboard = () => {
                     })))
               }                        
             </div>
-          </div>                           
+          </div>                 
+
+          {/* yearly overview */}
+
           <div className="progress-overview half-width">
             <div className="header">
               <div className="title">Financial year overview</div>
               <span className="sub-title">Budget remaining by category</span>
+              <div className="filter">              
+                <select
+                  id="sort-by-fin-year"
+                  className="sort-by-filter"
+                  value={selectedFinancialYear}
+                  onChange={e => setSelectedFinancialYear(Number(e.target.value))}
+                >
+                  {                    
+                    years.map((y, index) => {      
+                      if(currentMonth <= 6 && index === 0) return; // removing next financial year                             
+                      return <option key={index} value={y}>{`${y} / ${y + 1}`}</option>                  
+                    })
+                  }
+                  <option value="123">123</option>
+
+                </select>                
+              </div>              
             </div>
             <div className="content">
               {
                   groups
                     .filter(g => g.id === 1 || g.id === 2)
-                    .map(g => (g.categories.map((c) => {   
-                      // setting up year selection - 
-                      const selectedYear = 2023;
-                      const {startDate, endDate} = getFinancialYearRange()   
+                    .map(g => (g.categories.map((c) => {    
 
                       const categorySpend = transactions
                         .filter(t => t.groupId === g.id && t.categoryId === c.id)
                         .filter(t => isDateBetween(
                           t.date, 
-                          toISODate(startDate),
-                          toISODate(endDate)
+                          toISODate(selectedFinYearStart),
+                          toISODate(selectedFinYearEnd)
                         ))
                         .reduce((total, item) => total + item.amount, 0);
 
                       let currentMonth = new Date().getMonth();
-                      if(!selectedYear) {
+                      if(!selectedFinancialYear) {
                         currentMonth <= 5 ? (currentMonth += 7) : (currentMonth -= 5);   
                       } else {
                         currentMonth = 12;

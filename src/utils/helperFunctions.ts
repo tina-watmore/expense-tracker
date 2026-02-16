@@ -54,8 +54,9 @@ export function getFinancialYearRange(selectedYear?: number) {
 
   // selected financial year
   if(selectedYear) {
+    console.log("added selected year: ", selectedYear);
     startDate = new Date(selectedYear, 6, 1)   
-    endDate = new Date((selectedYear + 1) + 1, 5, 30) 
+    endDate = new Date(selectedYear + 1, 5, 30) 
   }
 
   return {
@@ -89,8 +90,9 @@ export function toISODate(date: Date) {
 }
 
  export const generateYearsDescending = (startYear: number) => {
-  const currentYear = new Date().getFullYear()
-  const years = []
+  const now = new Date();
+  let currentYear = now.getFullYear();
+  const years = [];
 
   for (let year = currentYear; year >= startYear; year--) {
     years.push(year)
