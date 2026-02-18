@@ -42,7 +42,7 @@ To do:
 ##### New Sections
 
 * Business summary page of expenses
-* Property summary page 
+* Property summary page
 
 
 

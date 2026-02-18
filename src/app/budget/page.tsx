@@ -129,7 +129,7 @@ export default async function Budget() {
               savingsGroupData.length > 0 ? (
                 <>
                   <div className="group-header hr-row">
-                    <div className="group-title t-col">Investments & Savings:</div>
+                    <div className="group-title t-col">Savings:</div>
                     <div className="date-title s-col">
                       {
                         incomeTotal > 0 ? `${getPercentage(savingsCostTotal, incomeTotal).toFixed(1)}%` : "0%"                        
@@ -179,7 +179,7 @@ export default async function Budget() {
                   </div>                          
                 </>
               ) : (
-                <p>No fetched savings data</p>
+                <p>No fetched investing data</p>
               )                    
             }  
             {
