@@ -361,39 +361,42 @@ header {
 
     &:has(> .bg-card:nth-last-child(4)) .bg-card {
       width: 25%;
-    }    
+    }  
+
+    &:has(> .bg-card:nth-last-child(5)) .bg-card {
+      width: 20%;
+    }      
 
     .bg-card {
       border: 1px solid var(--site-color-secondary);
       border-radius: 20px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
       overflow:hidden;      
-      padding: 26px 24px;
     }
 
     .title {
+      border-bottom: 1px solid var(--site-color-secondary);
+      background-color: rgb(var(--site-color-secondary-rgb), 0.7);
+      letter-spacing: 1px;      
+      display: flex; 
       font-weight: 700;
-      margin-bottom: 40px;
+      font-size: 1rem;
+      padding: 18px 24px;
     }
 
-    .details {
-      display: flex;
-      justify-content: space-between;
+    .item:first-child {
+      padding-top: 24px;
+      padding-bottom: 20px;
     }
 
-    .item:nth-child(2) {
-      text-align: right;
+    .item {
+      padding: 0 24px 24px;
     }
 
     .amount {
-      font-size: 1.50rem;
+      font-size: 1.30rem;
       font-weight: 700;
-      &.positive {
-        color: var(--positive-color);
-      }
-      &.negative {
-        color: var(--negative-color);
-      }      
+
     }
 
     .info {

@@ -1,0 +1,16 @@
+{
+  "networth": [   
+    {
+      "id": 1,
+      "name": "Networth",
+      "createdDate": "2026-01-30T06:15:45.021Z",
+      "items": [
+        { "id": 1, "name": "Assets", "amount": 2907000},
+        { "id": 2, "name": "Investments", "amount": 32091 },
+        { "id": 3, "name": "Superannuation", "amount": 505000 },
+        { "id": 4, "name": "Savings", "amount": 24000 },
+        { "id": 5, "name": "Debt", "amount": -425000 }
+      ]
+    }      
+  ]
+}

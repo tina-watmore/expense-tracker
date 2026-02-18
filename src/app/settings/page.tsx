@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 
-export const Metadata = {
+export const metadata = {
   title: 'Settings',
   description: 'User settings',
 };

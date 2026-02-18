@@ -50,24 +50,33 @@
           ]
         },
         { "id": 10, "name": "Gifts", "amount": 100 },        
-        { "id": 11, "name": "Miscellaneous", "amount": 350 }
+        { "id": 11, "name": "Miscellaneous", "amount": 350 },
+        { 
+          "id": 12, 
+          "name": "Holiday", 
+          "amount": 1500, 
+          "subCategories": [
+            { "id": 1, "name": "Flights" },
+            { "id": 2, "name": "Accommodation Cost" },
+            { "id": 3, "name": "Activities" }
+          ]        
+        },
+        { "id": 13, "name": "Tina's GFS", "amount": 300 },
+        { "id": 14, "name": "Jason's GFS", "amount": 300 }          
       ]
     },
     {
       "id": 2,
-      "name": "Guilt Free Spend",
+      "name": "Saving",
       "categories": [
-        { "id": 1, "name": "Holiday", "amount": 1500 },
-        { "id": 2, "name": "Tina's GFS", "amount": 300 },
-        { "id": 3, "name": "Jason's GFS", "amount": 300 }        
+        { "id": 1, "name": "Long Term Emergency Savings", "amount": 1000},
+        { "id": 2, "name": "Wallie Savings", "amount": 50 }
       ]
     },      
     {
       "id": 3,
-      "name": "Investing & Saving",
+      "name": "Investing",
       "categories": [
-        { "id": 1, "name": "Long Term Emergency Savings", "amount": 1000},
-        { "id": 2, "name": "Wallie Savings", "amount": 50 },
         { "id": 3, "name": "ETF's", "amount": 500 },
         { "id": 4, "name": "Tina's Superannuation", "amount": 232.14 },
         { "id": 5, "name": "Jason's Superannuation", "amount": 1750 }        
@@ -97,17 +106,6 @@
     },
     {
       "id": 6,
-      "name": "Networth",
-      "categories": [
-        { "id": 1, "name": "Assets", "amount": 2907000},
-        { "id": 2, "name": "Investments", "amount": 32091 },
-        { "id": 3, "name": "Superannuation", "amount": 505000 },
-        { "id": 4, "name": "Savings", "amount": 24000 },
-        { "id": 5, "name": "Debt", "amount": -425000 }
-      ]
-    },
-    {
-      "id": 7,
       "name": "Income",
       "categories": [
         { "id": 1, "name": "Jason", "amount": 12199.33},

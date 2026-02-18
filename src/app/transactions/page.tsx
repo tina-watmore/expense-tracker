@@ -2,7 +2,7 @@ import { AddExpenseForm } from "./AddExpenseForm";
 import { TransactionList } from "./TransactionsList";
 import Header from "@/components/Header";
 
-export const Metadata = {
+export const metadata = {
   title: 'Transactions',
   description: 'Add expense and view transactions',
 };

@@ -18,27 +18,31 @@ export const Dashboard = () => {
     const { transactions, groups } = useTransactions();               
     const { currentYear, currentMonth } = getCurrentDate();
     const { startDate, endDate } = getFinancialYearRange();  
-    const [selectedFinancialYear, setSelectedFinancialYear] = useState();
+    const [selectedFinancialYear, setSelectedFinancialYear] = useState<number>();
     const [selectedYear, setSelectedYear] = useState(currentYear);
     const [selectedMonth, setSelectedMonth] = useState(currentMonth);  
     const [selectedFinYearStart, setSelectedFinYearStart] = useState<Date>(startDate);
     const [selectedFinYearEnd, setSelectedFinYearEnd] = useState<Date>(endDate);    
+
+    const transactionsFilteredByCurrentMonth = transactions.filter(t => isInCurrentMonth(t.date));
    
     const monthlyExpenseTotal = useMemo(() => {
-      return transactions.filter(t => isInCurrentMonth(
-        t.date)
-      )
-      .filter(t => t.groupId === 1 || t.groupId === 2)
-      .reduce((total, t) => total + t.amount, 0)      
+      return transactionsFilteredByCurrentMonth
+        .filter(t => t.groupId === 1 || t.groupId === 2)
+        .reduce((total, t) => total + t.amount, 0)      
     }, [transactions]);
 
     const monthlyIncomeTotal = useMemo(() => {
-      return transactions.filter(t => isInCurrentMonth(
-        t.date)
-      )
-      .filter(t => t.groupId === 7)
-      .reduce((total, t) => total + t.amount, 0)      
+      return transactionsFilteredByCurrentMonth
+        .filter(t => t.groupId === 7)
+        .reduce((total, t) => total + t.amount, 0)      
     }, [transactions]);      
+
+    const monthlySavedTotal = useMemo(() => {
+      return transactionsFilteredByCurrentMonth
+        .filter(t => t.groupId === 7)
+        .reduce((total, t) => total + t.amount, 0)      
+    }, [transactions]);         
 
     const yearlyIncomeTotal = useMemo(() => {
       return transactions.filter(t => isDateBetween(
@@ -80,12 +84,12 @@ export const Dashboard = () => {
             </div>
             <div className="details">
               <div className="item">
-                <div className="amount positive-value">{formatCurrency(monthlyIncomeTotal)}</div>
+                <div className="amount">{formatCurrency(monthlyIncomeTotal)}</div>
                 <div className="info">This month</div>
               </div>
               <div className="item">
-                <div className="amount positive-value">{formatCurrency(yearlyIncomeTotal)}</div>
-                <div className="info">This year</div>
+                <div className="amount">{formatCurrency(yearlyIncomeTotal)}</div>
+                <div className="info">This financial year</div>
               </div>
             </div>
           </div>
@@ -95,15 +99,45 @@ export const Dashboard = () => {
             </div>
             <div className="details">
               <div className="item">
-                <div className="amount negative-value">{formatCurrency(monthlyExpenseTotal)}</div>
+                <div className="amount">{formatCurrency(monthlyExpenseTotal)}</div>
                 <div className="info">This month</div>
               </div>
               <div className="item">
-                <div className="amount negative-value">{formatCurrency(yearlyExpenseTotal)}</div>
-                <div className="info">This year</div>
+                <div className="amount">{formatCurrency(yearlyExpenseTotal)}</div>
+                <div className="info">This financial year</div>
               </div>
             </div>                      
           </div>
+          <div className="bg-card">
+            <div className="title">
+              Total Saved: 
+            </div>
+            <div className="details">
+              <div className="item">
+                <div className="amount">{formatCurrency(monthlyIncomeTotal)}</div>
+                <div className="info">This month</div>
+              </div>
+              <div className="item">
+                <div className="amount">{formatCurrency(yearlyIncomeTotal)}</div>
+                <div className="info">This financial year</div>
+              </div>
+            </div>
+          </div>  
+          <div className="bg-card">
+            <div className="title">
+              Total Invested: 
+            </div>
+            <div className="details">
+              <div className="item">
+                <div className="amount">{formatCurrency(monthlyIncomeTotal)}</div>
+                <div className="info">This month</div>
+              </div>
+              <div className="item">
+                <div className="amount">{formatCurrency(yearlyIncomeTotal)}</div>
+                <div className="info">This financial year</div>
+              </div>
+            </div>
+          </div>                  
           <div className="bg-card">
             <div className="title">
               Net Balance: 
@@ -115,7 +149,7 @@ export const Dashboard = () => {
               </div>
               <div className="item">
                 <div className="amount">$0.00</div>
-                <div className="info">This year</div>
+                <div className="info">This financial year</div>
               </div>
             </div>                      
           </div> 
@@ -163,7 +197,7 @@ export const Dashboard = () => {
               {
                   groups
                     .filter(g => g.id === 1 || g.id === 2)
-                    .map(g => (g.categories.map((c) => {
+                    .map(g => (g.categories.map((c, index) => {
                       const categorySpend = transactions
                         .filter(t => t.groupId === g.id && t.categoryId === c.id)
                         .filter(t => isInSelectedDateRange(t.date, selectedMonth, selectedYear))
@@ -180,7 +214,7 @@ export const Dashboard = () => {
                         return;                        
                       }
                       return (
-                        <div className={`${progressLevel()} item`}>
+                        <div key={index}  className={`${progressLevel()} item`}>
                           <div className="category">
                             {c.name}
                           </div>
@@ -225,12 +259,10 @@ export const Dashboard = () => {
                 >
                   {                    
                     years.map((y, index) => {      
-                      if(currentMonth <= 6 && index === 0) return; // removing next financial year                             
+                      if(currentMonth <= 6 && index === 0) return; // removing next financial year if current month is before July                            
                       return <option key={index} value={y}>{`${y} / ${y + 1}`}</option>                  
                     })
                   }
-                  <option value="123">123</option>
-
                 </select>                
               </div>              
             </div>
@@ -238,7 +270,7 @@ export const Dashboard = () => {
               {
                   groups
                     .filter(g => g.id === 1 || g.id === 2)
-                    .map(g => (g.categories.map((c) => {    
+                    .map(g => (g.categories.map((c, index) => {    
 
                       const categorySpend = transactions
                         .filter(t => t.groupId === g.id && t.categoryId === c.id)
@@ -249,16 +281,16 @@ export const Dashboard = () => {
                         ))
                         .reduce((total, item) => total + item.amount, 0);
 
-                      let currentMonth = new Date().getMonth();
+                      let currentMonthCount = currentMonth;
                       if(!selectedFinancialYear) {
-                        currentMonth <= 5 ? (currentMonth += 7) : (currentMonth -= 5);   
+                        currentMonthCount <= 5 ? (currentMonthCount += 7) : (currentMonthCount -= 5);   
                       } else {
-                        currentMonth = 12;
+                        currentMonthCount = 12;
                       }
                                         
                      
-                      const remainingAmount = (Number(c.amount) * currentMonth) - categorySpend;
-                      const percentageUsed = (categorySpend / Number(c.amount)) * 100;
+                      const remainingAmount = (Number(c.amount) * currentMonthCount) - categorySpend;
+                      const percentageUsed = (categorySpend / (Number(c.amount) * currentMonthCount)) * 100;
                       const safePercentage = Math.min(percentageUsed, 100);
                       const progressLevel = (): string => {
                         if(percentageUsed > 85 && percentageUsed < 100) {
@@ -270,12 +302,12 @@ export const Dashboard = () => {
                       }
 
                       return (
-                        <div className={`${progressLevel()} item`}>
+                        <div key={index} className={`${progressLevel()} item`}>
                           <div className="category">
                             {c.name}
                           </div>
                           <div className="amount">
-                            {formatCurrency(categorySpend)} / {formatCurrency(Number(c.amount) * currentMonth)}
+                            {formatCurrency(categorySpend)} / {formatCurrency(Number(c.amount) * currentMonthCount)}
                           </div>
                           <div className="progress">
                             <div

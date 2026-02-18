@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import { Dashboard } from "./Dashboard";
 
 
-export const Metadata = {
+export const metadata = {
   title: "Dashboard - TJ Tracker",
   description: "Budgeting and tracking daily expenses"
 }

@@ -1,8 +1,4 @@
-To do: 
-
-
-
-Working on: Yearly overview - progress bar not working correctly. Calculation wrong. 
+To do:
 
 
 
@@ -10,46 +6,52 @@ Working on: Yearly overview - progress bar not working correctly. Calculation wr
 
 * Top summary cards
 
-&nbsp;	- total savings
+ 	- total savings
 
-&nbsp;	- total investing
+ 	- total investing
 
-&nbsp;	- net balance 
+ 	- net balance
 
 * Monthly overview
 
-&nbsp;	- style dropdown
+ 	- style dropdown \*\*
 
-&nbsp;	- re-think colour scheme 
+ 	- re-think colour scheme
 
-* Yearly overview 
+* Yearly overview
 
-&nbsp;	- create drop down \& functionality for different financial years
-
-
-
-##### CSP Budget 
-
-* Update groups and categories 
-* Create new file for Networth 
-* Create form to update CSP budget 
+ 	- create drop down \& functionality for different financial years \*\*
 
 
 
-##### Transactions 
+##### CSP Budget
 
-* Re-style page 
+* Update groups and categories
+* Create new file for Networth
+* Create form to update CSP budget
+
+
+
+##### Transactions
+
+* Re-style page
 * Add filter to transaction list
 
 
 
+##### New Sections
+
+* Business summary page of expenses
+* Property summary page 
 
 
 
 
-Maybes: 
-
-* Property section 
 
 
 
+
+
+Maybes:
+
+* Property section
