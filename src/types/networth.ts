@@ -5,6 +5,8 @@ export type NetworthData = {
 export type Networth = {
     id: number; 
     name: string; 
+    createdDate: ISODateString;
+    financialYear: number;
     items: Item[];
 }
 
@@ -13,3 +15,5 @@ export type Item = {
     name: string; 
     amount?: number; 
 }
+
+type ISODateString = string;
