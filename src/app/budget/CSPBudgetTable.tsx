@@ -2,18 +2,11 @@
 
 import type { Category } from "@/types/groups";
 import { useTransactions } from "@/context/TransactionsContext";
-
 import { formatCurrency, getPercentage } from "@/utils/helperFunctions";
 
 export const CSPBudgetTable = () => {
   const { groups } = useTransactions();
 
-//   const networthResponse = await fetch('http://localhost:3000/api/networth');
-//   const networthFetchedData: { data: NetworthData } = await networthResponse.json();
-
-//   // networth
-//   const networthData: Item[] = networthFetchedData.data.networth.find((n) => n.id === 1)?.items ?? [];
-//   const networthTotal = networthData.reduce((total, category) => total + (category.amount ?? 0), 0);  
 
   // income
   const incomeGroupData: Category[] = groups.find((g) => g.id === 6)?.categories ?? [];
@@ -37,31 +30,7 @@ export const CSPBudgetTable = () => {
   return (
     <div className="card-wrapper">
         <div className="csp-budget-table table-content">  
-        {                
-            /* networth */      
-            // networthData.length > 0 ? (
-            // <>
-            //     <div className="group-header hr-row">
-            //     <div className="group-title t-col">Networth:</div>
-            //     <div className="date-title s-col"></div>
-            //     </div>                      
-            //     {
-            //     networthData.map(item => (
-            //         <div className="row" key={item.id}>
-            //         <div className="t-col">{item.name}</div>
-            //         <div className="s-col">{formatCurrency(item.amount ?? 0)}</div>        
-            //         </div> 
-            //     ))
-            //     }
-            //     <div className="ft-row">
-            //     <div className="t-col">Total:</div>
-            //     <div className="s-col">{formatCurrency(networthTotal)}</div>        
-            //     </div>                          
-            // </>
-            // ) : (
-            // <p>No fixed costs</p>
-            // )                     
-        } 
+
         {
             /* income */       
             incomeGroupData.length > 0 ? (

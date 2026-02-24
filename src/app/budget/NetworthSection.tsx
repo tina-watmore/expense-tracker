@@ -1,9 +1,9 @@
 "use client";
 
-import { formatCurrency, getFinancialYearRange, generateYearsDescending } from "@/utils/helperFunctions";
+import { formatCurrency, getFinancialYearRange } from "@/utils/helperFunctions";
 import type { Networth } from "@/types/networth";
 import type { Group } from "@/types/groups";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Props = {
     networthData: Networth[], 
@@ -13,16 +13,25 @@ type Props = {
 export const NetworthSection = ({ networthData, groupData }: Props) => {    
     const currentFinYear = getFinancialYearRange().startDate.getFullYear();   
     const currentMonth = new Date().getMonth();
-    let filterEarliestYear: number = currentFinYear;
-    networthData.map(n => {
-        if(n.financialYear < filterEarliestYear) {
-            filterEarliestYear = n.financialYear;
-        }
-    });
-    const years = generateYearsDescending(filterEarliestYear);
-    const [selectedFinancialYear, setSelectedFinancialYear] = useState<number>(currentFinYear);
 
-    const networthTotal = networthData.items.reduce((total, item) => total + (item.items.amount ?? 0), 0);  
+    // years required for filter dropdown
+    const getYears = networthData.map(n => {
+        return n.financialYear;
+    });
+    const years = [...new Set(getYears)].sort((a, b) => b - a);
+
+
+    const [selectedFinancialYear, setSelectedFinancialYear] = useState<number>(currentFinYear);
+    const netentry = networthData.find((n) => {n.financialYear === selectedFinancialYear});
+    // working on this - trying to get the latest networth entry
+    const [networthEntry, setNetworthEntry] = useState();
+
+    useEffect(() => {
+        console.log("networth entry: ", netentry)
+    }, [selectedFinancialYear]);
+    
+
+    //const networthTotal = networthData.items.reduce((total, item) => total + (item.items.amount ?? 0), 0);  
 
     return (
         <>
@@ -36,14 +45,12 @@ export const NetworthSection = ({ networthData, groupData }: Props) => {
                             value={selectedFinancialYear}
                             onChange={e => setSelectedFinancialYear(Number(e.target.value))}
                         >
-                        {
-                            years.map((y, index) => {      
-                                if(currentMonth <= 6 && index === 0) return; // removing next financial year if current month is before July                            
-                                return <option key={index} value={y}>{`${y} / ${y + 1}`}</option>                  
-                            })
-                        }
-                        
-
+                            {
+                                years.map((y, index) => {      
+                                    if(currentMonth >= 6 && index === 0) return; // removing next financial year if current month is before January                            
+                                    return <option key={index} value={y}>{`${y} / ${y + 1}`}</option>                  
+                                })
+                            }            
                         </select>                
                     </div>                    
                 </div>
@@ -52,13 +59,13 @@ export const NetworthSection = ({ networthData, groupData }: Props) => {
                 networthData.map(item => (
                     <div className="row" key={item.id}>
                     <div className="t-col">{item.name}</div>
-                    <div className="s-col">{formatCurrency(item.)}</div>        
+                    <div className="s-col">item total goes here</div>        
                     </div> 
                 ))
             }
             <div className="ft-row">
                 <div className="t-col">Total:</div>
-                <div className="s-col">{formatCurrency(networthTotal)}</div>        
+                <div className="s-col">networth total value goes here</div>        
             </div>                          
         </>  
     )
