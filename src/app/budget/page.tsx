@@ -21,10 +21,12 @@ export default async function BudgetPage() {
   return (
     <div className='page-wrapper'>
       <Header title="CSP Budget" subtitle="" />
+      <div className="grid-container"></div>
       <div className="content-wrapper">
         <div className="card-wrapper">
             <div className="csp-budget-table table-content">  
-              <NetworthSection networthData={networthData} groupData={groupData} />                                                                                                                                                                                                                                                                                                                                                                     
+              <NetworthSection networthData={networthData} groupData={groupData} />
+              <CSPBudgetTable />
             </div>                                              
         </div> 
       </div>

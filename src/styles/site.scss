@@ -343,6 +343,10 @@ header {
     }
   }
 
+  .grid-container {
+    display: grid;
+  }
+
   .bg-cards-wrapper {
     display: flex;
     flex-wrap: nowrap;

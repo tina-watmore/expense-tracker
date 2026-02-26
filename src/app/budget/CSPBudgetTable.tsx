@@ -28,9 +28,7 @@ export const CSPBudgetTable = () => {
   const budgetRemainder = incomeTotal - (fixedCostTotal + savingsCostTotal + investingCostTotal);
 
   return (
-    <div className="card-wrapper">
-        <div className="csp-budget-table table-content">  
-
+    <>
         {
             /* income */       
             incomeGroupData.length > 0 ? (
@@ -149,7 +147,7 @@ export const CSPBudgetTable = () => {
             <div className="s-col">{formatCurrency(budgetRemainder)}</div>        
             </div>  
         }                                                                                                                                                                                                                                                                                                                                                                         
-        </div>                                              
-    </div>  
+    
+    </>
   );
 }

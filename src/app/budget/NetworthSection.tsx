@@ -12,26 +12,32 @@ type Props = {
 
 export const NetworthSection = ({ networthData, groupData }: Props) => {    
     const currentFinYear = getFinancialYearRange().startDate.getFullYear();   
-    const currentMonth = new Date().getMonth();
-
+    const [selectedFinancialYear, setSelectedFinancialYear] = useState<number>(currentFinYear);
+    const currentMonth = new Date().getMonth();    
+    
     // years required for filter dropdown
     const getYears = networthData.map(n => {
         return n.financialYear;
     });
     const years = [...new Set(getYears)].sort((a, b) => b - a);
 
+    // intital networth entries
+    const intialNetworthEntry: Networth[] = networthData.filter(n => n.financialYear === selectedFinancialYear);        
+    const intialNetworthEntryTotal: number = intialNetworthEntry[0].items.reduce((total, item) => total + (item.amount ?? 0), 0);
 
-    const [selectedFinancialYear, setSelectedFinancialYear] = useState<number>(currentFinYear);
-    const netentry = networthData.find((n) => {n.financialYear === selectedFinancialYear});
-    // working on this - trying to get the latest networth entry
-    const [networthEntry, setNetworthEntry] = useState();
+    // networth setter functions
+    const [networthEntry, setNetworthEntry] = useState<Networth[]>(intialNetworthEntry);
+    const [networthEntryTotal, setNetworthEntryTotal] = useState<number>(intialNetworthEntryTotal);
 
+    // update networth entry on financial year change
     useEffect(() => {
-        console.log("networth entry: ", netentry)
+        let selectedNetworth: Networth[] = networthData.filter(n => n.financialYear === selectedFinancialYear);
+        let networthEntryTotal: number = selectedNetworth[0].items.reduce((total, item) => total + (item.amount ?? 0), 0);  
+        setNetworthEntry(selectedNetworth);
+        setNetworthEntryTotal(networthEntryTotal);
     }, [selectedFinancialYear]);
     
 
-    //const networthTotal = networthData.items.reduce((total, item) => total + (item.items.amount ?? 0), 0);  
 
     return (
         <>
@@ -56,16 +62,16 @@ export const NetworthSection = ({ networthData, groupData }: Props) => {
                 </div>
             </div>                      
             {
-                networthData.map(item => (
+                networthEntry[0].items.map(item => (
                     <div className="row" key={item.id}>
                     <div className="t-col">{item.name}</div>
-                    <div className="s-col">item total goes here</div>        
+                    <div className="s-col">{formatCurrency(item.amount ?? 0)}</div>        
                     </div> 
                 ))
             }
             <div className="ft-row">
                 <div className="t-col">Total:</div>
-                <div className="s-col">networth total value goes here</div>        
+                <div className="s-col">{formatCurrency(networthEntryTotal)}</div>        
             </div>                          
         </>  
     )
