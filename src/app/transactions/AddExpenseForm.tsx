@@ -54,7 +54,6 @@ export const AddExpenseForm = () => {
 
         // save returned transaction and add it to the transactions list in memory        
         const savedTransaction = await res.json();
-        console.log("savedTransaction", savedTransaction);
         addTransaction(savedTransaction.transaction);
 
         // reset form fields

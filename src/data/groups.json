@@ -7,79 +7,92 @@
         {
           "id": 1,
           "name": "Groceries",
-          "amount": 1400,
+          "amount": [
+            {
+              "financialYear": 2023,
+              "total": 1200
+            },
+            {
+              "financialYear": 2024,
+              "total": 1300              
+            },
+            {
+              "financialYear": 2025,
+              "total": 1400              
+            }            
+          ],
           "subCategories": [
             { "id": 1, "name": "Food / Toiletries / Health Foods" },
             { "id": 2, "name": "Bottle Shop" },
             { "id": 3, "name": "Qantas Wine" }
           ]
         },
-        { "id": 2, "name": "Takeaway", "amount": 300 },
-        { "id": 3, "name": "Going Out", "amount": 1000 },
-        { "id": 4, "name": "Personal Care", "amount": 220 },
+        { "id": 2, "name": "Takeaway", "amount": [{"financialYear": 2023, "total": 200},{"financialYear": 2024, "total": 250},{"financialYear": 2025, "total": 300}] },
+        { "id": 3, "name": "Going Out", "amount":  [{"financialYear": 2023, "total": 800},{"financialYear": 2024, "total": 900},{"financialYear": 2025, "total": 1000}]  },
+        { "id": 4, "name": "Personal Care", "amount":  [{"financialYear": 2023, "total": 100},{"financialYear": 2024, "total": 150},{"financialYear": 2025, "total": 220}]  },
         {
           "id": 5,
           "name": "Accommodation Cost",
-          "amount": 2308.71,
+          "amount":  [{"financialYear": 2023, "total": 2000},{"financialYear": 2024, "total": 2200},{"financialYear": 2025, "total": 2308.71}] ,
           "subCategories": [
             { "id": 1, "name": "Mortgage" },
             { "id": 2, "name": "Gas / Electricity" },
             { "id": 3, "name": " Insurance, council, strata, water" }
           ]
         },
-        { "id": 6, "name": "Internet / Phone", "amount": 68 },
+        { "id": 6, "name": "Internet / Phone", "amount":  [{"financialYear": 2023, "total": 50},{"financialYear": 2024, "total": 60},{"financialYear": 2025, "total": 68}]  },
         {
           "id": 7,
           "name": "Health",
-          "amount": 520,
+          "amount":  [{"financialYear": 2023, "total": 350},{"financialYear": 2024, "total": 450},{"financialYear": 2025, "total": 520}] ,
           "subCategories": [
             { "id": 1, "name": "Health Insurance" },
             { "id": 2, "name": "Medicine / Doctors / Specialist" },
             { "id": 3, "name": "Gym Membership" }
           ]
         },
-        { "id": 8, "name": "Subscriptions", "amount": 35 },
+        { "id": 8, "name": "Subscriptions", "amount":  [{"financialYear": 2023, "total": 35},{"financialYear": 2024, "total": 35},{"financialYear": 2025, "total": 35}]  },
         {
           "id": 9,
           "name": "Transport",
-          "amount": 350,
+          "amount":  [{"financialYear": 2023, "total": 300},{"financialYear": 2024, "total": 350},{"financialYear": 2025, "total": 350}] ,
           "subCategories": [
             { "id": 1, "name": "MC holding costs (insurance, rego, NRMA etc)" },
             { "id": 2, "name": "Opal" },
             { "id": 3, "name": "Uber / Petrol / GoGet / Car Rental / Other" }
           ]
         },
-        { "id": 10, "name": "Gifts", "amount": 100 },        
-        { "id": 11, "name": "Miscellaneous", "amount": 350 },
+        { "id": 10, "name": "Gifts", "amount":  [{"financialYear": 2023, "total": 100},{"financialYear": 2024, "total": 100},{"financialYear": 2025, "total": 100}]  },        
+        { "id": 11, "name": "Miscellaneous", "amount":  [{"financialYear": 2023, "total": 250},{"financialYear": 2024, "total": 300},{"financialYear": 2025, "total": 350}]  },
         { 
           "id": 12, 
           "name": "Holiday", 
-          "amount": 1500, 
+          "amount":  [{"financialYear": 2023, "total": 1400},{"financialYear": 2024, "total": 1500},{"financialYear": 2025, "total": 1500}] , 
           "subCategories": [
             { "id": 1, "name": "Flights" },
             { "id": 2, "name": "Accommodation Cost" },
             { "id": 3, "name": "Activities" }
           ]        
         },
-        { "id": 13, "name": "Tina's GFS", "amount": 300 },
-        { "id": 14, "name": "Jason's GFS", "amount": 300 }          
+        { "id": 13, "name": "Tina's GFS", "amount":  [{"financialYear": 2023, "total": 200},{"financialYear": 2024, "total": 250},{"financialYear": 2025, "total": 300}]  },
+        { "id": 14, "name": "Jason's GFS", "amount":  [{"financialYear": 2023, "total": 200},{"financialYear": 2024, "total": 250},{"financialYear": 2025, "total": 300}]  }          
       ]
     },
     {
       "id": 2,
       "name": "Saving",
       "categories": [
-        { "id": 1, "name": "Long Term Emergency Savings", "amount": 1000},
-        { "id": 2, "name": "Wallie Savings", "amount": 50 }
+        { "id": 1, "name": "Long Term Emergency Savings", "amount":  [{"financialYear": 2023, "total": 600},{"financialYear": 2024, "total": 800},{"financialYear": 2025, "total": 1000}] },
+        { "id": 2, "name": "Wallie Savings", "amount":  [{"financialYear": 2023, "total": 0},{"financialYear": 2024, "total": 0},{"financialYear": 2025, "total": 50}]  }
       ]
     },      
     {
       "id": 3,
       "name": "Investing",
       "categories": [
-        { "id": 3, "name": "ETF's", "amount": 500 },
-        { "id": 4, "name": "Tina's Superannuation", "amount": 232.14 },
-        { "id": 5, "name": "Jason's Superannuation", "amount": 1750 }        
+        { "id": 3, "name": "ETF's", "amount":  [{"financialYear": 2023, "total": 0},{"financialYear": 2024, "total": 1000},{"financialYear": 2025, "total": 500}]  },
+        { "id": 4, "name": "Tina's Superannuation", "amount":  [{"financialYear": 2023, "total": 0},{"financialYear": 2024, "total": 500},{"financialYear": 2025, "total": 232.14}]  },
+        { "id": 5, "name": "Jason's Superannuation", "amount":  [{"financialYear": 2023, "total": 0},{"financialYear": 2024, "total": 500},{"financialYear": 2025, "total": 1750}]  }        
       ]
     },         
     {

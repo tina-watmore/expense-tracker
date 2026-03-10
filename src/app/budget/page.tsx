@@ -3,6 +3,7 @@ import { CSPBudgetTable } from "./CSPBudgetTable";
 import { NetworthSection } from "./NetworthSection";
 import type { Group } from "@/types/groups";
 import type { Networth } from "@/types/networth";
+import { formatCurrency, getFinancialYearRange } from "@/utils/helperFunctions";
 
 export const metadata = {
   title: 'CSP Budget',
@@ -23,7 +24,7 @@ export default async function BudgetPage() {
       <Header title="CSP Budget" subtitle="" />
       <div className="grid-container"></div>
       <div className="content-wrapper">
-        <div className="card-wrapper">
+        <div className="card-wrapper half-width">
             <div className="csp-budget-table table-content">  
               <NetworthSection networthData={networthData} groupData={groupData} />
               <CSPBudgetTable />
